@@ -1,0 +1,58 @@
+*{box-sizing: border-box;}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #007ba7;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 60px;
+    position: absolute;
+    top: 36px;
+    left: 440px;
+    color: lightyellow;
+}
+
+header{
+    background-color: #344611;
+    height: 20vh;
+    position: relative;
+    border-bottom: 8px solid #841010;
+}
+
+.start-button{
+    cursor: pointer;
+    position: relative;
+    top: 60px;
+    left: 660px;
+    width: 144px;
+    height: 72px;
+    text-transform: capitalize;
+    font-size: 32px;
+    color: lightyellow;
+    background-color: #841010;
+    border: 2px solid #67330F;
+    border-radius: 5%;
+}
+
+.start-button:hover{
+    background-color: #67330F;
+    border: 2px solid #841010;
+}
+
+canvas{
+    position: relative;
+    left: 240px;
+}
+
+/* .cell{
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 0 1px #333;
+    cursor: pointer;
+    line-height: 100px;
+} */
