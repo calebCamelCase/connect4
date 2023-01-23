@@ -44,9 +44,10 @@ header{
     border: 2px solid #841010;
 }
 
-canvas{
+#gameBoard{
     position: relative;
     left: 240px;
+    background-color: darkred;
 }
 
 /* .cell{
