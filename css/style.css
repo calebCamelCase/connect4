@@ -27,8 +27,8 @@ header{
 .start-button{
     cursor: pointer;
     position: relative;
-    top: 60px;
-    left: 660px;
+    /* top: 60px; */
+    left: 200px;
     width: 144px;
     height: 72px;
     text-transform: capitalize;
@@ -47,7 +47,34 @@ header{
 #gameBoard{
     position: relative;
     left: 240px;
-    background-color: darkred;
+    border-radius: 10%;
+    /* background-color: darkred; */
+}
+
+#gameSection{
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    margin: 50px auto;
+    padding: 10px auto;
+    /* background-color: darkred; */
+    width: 760px;
+    height: 650px;
+    border-radius: 5%;
+}
+
+.connect-space {
+    width: 100px;
+    height: 100px;
+    margin: 4px;
+    background: #ddd;
+    /* box-shadow: 0 0 0 3px black; */
+    border: 2px solid #000;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.connect-space:hover{
+    background-color: #fff;
 }
 
 /* .cell{

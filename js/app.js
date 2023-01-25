@@ -15,6 +15,15 @@ class Connect {
         this.boardBg = 'whitesmoke';
         this.boardBorder = "#67330F";
 
+
+        this.gameState = [
+            '','','','','','','',
+            '','','','','','','',
+            '','','','','','','',
+            '','','','','','','',
+            '','','','','','','',
+            '','','','','','',''
+        ]
         // array courtesy of Fakorede Damilola
         let winningArray = [ 
             [0, 1, 2, 3], [41, 40, 39, 38],[7, 8, 9, 10], 
@@ -49,6 +58,7 @@ class Connect {
     init(){
         this.canvas();
         // this.createBoard();
+        this.connectBoard();
         this.drawBoard(700, 600, "gameBoard");
     }
     
@@ -66,10 +76,13 @@ class Connect {
     }
 
     drawBoard(w, h, gameBoard){
-        gameBoard = document.getElementById("gameBoard");
+        // gameBoard = document.getElementById("gameBoard");
         this.gameBoardCtx //= gameBoard.getContext('2d');
         this.gameBoardCtx.canvas.width = w;
         this.gameBoardCtx.canvas.height = h;
+
+        // this.gameBoard.style.backgroundColor = "darkred";
+        // this.gameBoard.style.cursor = 'pointer';
 
         for(this.dx=0;this.dx<=w;this.dx+=100){
             for (this.dy=0;this.dy<=h;this.dy+=100){
@@ -127,6 +140,70 @@ class Connect {
         // gameGrid.fillRect(700, 0, 20, 620);
         // gameGrid.strokeRect(700, 0, 20, 620);
     }
+
+    connectBoard(){
+        var divSpace = document.createElement('div');
+        this.gameBoardSection.appendChild(divSpace);
+        // console.log(divSpace);
+        divSpace = `
+        <div data-cell-index='0' class='connect-space'></div>
+        <div data-cell-index='1' class='connect-space'></div>
+        <div data-cell-index='2' class='connect-space'></div>
+        <div data-cell-index='3' class='connect-space'></div>
+        <div data-cell-index='4' class='connect-space'></div>
+        <div data-cell-index='5' class='connect-space'></div>
+        <div data-cell-index='6' class='connect-space'></div>
+        <div data-cell-index='7' class='connect-space'></div>
+        <div data-cell-index='8' class='connect-space'></div>
+        <div data-cell-index='9' class='connect-space'></div>
+        <div data-cell-index='10' class='connect-space'></div>
+        <div data-cell-index='11' class='connect-space'></div>
+        <div data-cell-index='12' class='connect-space'></div>
+        <div data-cell-index='13' class='connect-space'></div>
+        <div data-cell-index='14' class='connect-space'></div>
+        <div data-cell-index='15' class='connect-space'></div>
+        <div data-cell-index='16' class='connect-space'></div>
+        <div data-cell-index='17' class='connect-space'></div>
+        <div data-cell-index='18' class='connect-space'></div>
+        <div data-cell-index='19' class='connect-space'></div>
+        <div data-cell-index='20' class='connect-space'></div>
+        <div data-cell-index='21' class='connect-space'></div>
+        <div data-cell-index='22' class='connect-space'></div>
+        <div data-cell-index='23' class='connect-space'></div>
+        <div data-cell-index='24' class='connect-space'></div>
+        <div data-cell-index='25' class='connect-space'></div>
+        <div data-cell-index='26' class='connect-space'></div>
+        <div data-cell-index='27' class='connect-space'></div>
+        <div data-cell-index='28' class='connect-space'></div>
+        <div data-cell-index='29' class='connect-space'></div>
+        <div data-cell-index='30' class='connect-space'></div>
+        <div data-cell-index='31' class='connect-space'></div>
+        <div data-cell-index='32' class='connect-space'></div>
+        <div data-cell-index='33' class='connect-space'></div>
+        <div data-cell-index='34' class='connect-space'></div>
+        <div data-cell-index='35' class='connect-space'></div>
+        <div data-cell-index='36' class='connect-space'></div>
+        <div data-cell-index='37' class='connect-space'></div>
+        <div data-cell-index='38' class='connect-space'></div>
+        <div data-cell-index='39' class='connect-space'></div>
+        <div data-cell-index='40' class='connect-space'></div>
+        <div data-cell-index='41' class='connect-space'></div>
+        `
+        this.gameBoardSection.innerHTML = divSpace
+        console.log(this.gameBoardSection);
+
+        this.gameBoardSection.style.backgroundColor = 'darkred';
+    }
+
+    handleSpaceClicked(){
+        const spaces = document.querySelectorAll(".connect-spaces");
+        spaces.forEach(space => {
+            const spaceIdx = parseInt(space.getAttribute('data-cell-index'));
+            space.addEventListener('click', ()=> {
+                
+            })
+        })
+    }
     
     // createBoard(){
     //     // createBoard function courtesy of Fakorede Damilola
@@ -142,26 +219,6 @@ class Connect {
 
     // }
 }
-    // var gameGrid = function(w, h, id){
-    //     var canvas = document.getElementById(id);
-    //     var gridCtx = canvas.getContext('2d');
-    //     gridCtx.canvas.width = w;
-    //     gridCtx.canvas.height = h;
-    
-    //     for(x=0;x<=w;x+=100){
-    //         for (y=0;y<=h;y+=100){
-    //             gridCtx.moveTo(x, 0);
-    //             gridCtx.lineTo(x, h);
-    //             gridCtx.stroke();
-    //             gridCtx.moveTo(0, y);
-    //             gridCtx.lineTo(w, y);
-    //             gridCtx.stroke();
-    //         }
-    //     };
-    
-    // };
-    // gameGrid(700, 600, "gameBoard");
-
 
 const connectFour = new Connect();
 
