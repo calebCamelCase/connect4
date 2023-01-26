@@ -68,13 +68,25 @@ header{
     margin: 4px;
     background: #ddd;
     /* box-shadow: 0 0 0 3px black; */
-    border: 2px solid #000;
+    /* border: 1px solid #000; */
     border-radius: 50%;
     cursor: pointer;
 }
 
 .connect-space:hover{
     background-color: #fff;
+}
+
+.heads, .orange{
+    background-color: darkorange;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 60px;
+}
+
+.tails, .pink{
+    background-color: hotpink;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 60px;
 }
 
 /* .cell{

@@ -15,6 +15,8 @@ class Connect {
         this.boardBg = 'whitesmoke';
         this.boardBorder = "#67330F";
 
+        this.gameActive = true;
+        this.currPlayer = 'H';
 
         this.gameState = [
             '','','','','','','',
@@ -25,7 +27,7 @@ class Connect {
             '','','','','','',''
         ]
         // array courtesy of Fakorede Damilola
-        let winningArray = [ 
+        this.winningArray = [ 
             [0, 1, 2, 3], [41, 40, 39, 38],[7, 8, 9, 10], 
             [34, 33, 32, 31], [14, 15, 16, 17], [27, 26, 25, 24], 
             [21, 22, 23, 24], [20, 19, 18, 17], [28, 29, 20, 31], 
@@ -60,6 +62,7 @@ class Connect {
         // this.createBoard();
         this.connectBoard();
         this.drawBoard(700, 600, "gameBoard");
+        this.handleSpaceClicked();
     }
     
     
@@ -190,19 +193,62 @@ class Connect {
         <div data-cell-index='41' class='connect-space'></div>
         `
         this.gameBoardSection.innerHTML = divSpace
-        console.log(this.gameBoardSection);
+        // console.log(this.gameBoardSection);
 
         this.gameBoardSection.style.backgroundColor = 'darkred';
     }
 
     handleSpaceClicked(){
-        const spaces = document.querySelectorAll(".connect-spaces");
+        const spaces = document.querySelectorAll(".connect-space");
         spaces.forEach(space => {
             const spaceIdx = parseInt(space.getAttribute('data-cell-index'));
             space.addEventListener('click', ()=> {
-                
+                if(this.gameState[spaceIdx] !='' || !this.gameActive){
+                    return;
+                }
+
+                this.handleSpacePlayed(space, spaceIdx);
+                console.log(this.handleSpacePlayed);
+                this.resultValidation();
+                console.log(this.resultValidation);
             })
         })
+    }
+
+    handleSpacePlayed(space, spaceIdx){
+        this.gameBoardSection[spaceIdx] = this.currPlayer;
+        this.currPlayer == 'H' ? space.classList.add('heads') : space.classList.add('tails');
+        space.innerText = this.currPlayer;
+        
+    }
+
+    resultValidation(){
+        let gameWon = false;
+
+        for(let i = 0; i <= 40; i++) {
+            const win = this.winningArray[i];
+
+            let a = this.gameState[win[0]]
+            let b = this.gameState[win[1]]
+            let c = this.gameState[win[2]]
+            let d = this.gameState[win[3]]
+
+            if (a == '' || b == '' || c == '' || d == '') {
+                continue;
+            }
+
+            if (a == b && b == c && c == d){
+                gameWon = true;
+                break;
+            }
+        }
+
+        this.playerChange()
+        
+    }
+
+    playerChange(){
+        this.currPlayer = this.currPlayer === 'H' ? 'T' : 'H';
     }
     
     // createBoard(){
