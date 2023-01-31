@@ -4,6 +4,8 @@
 
 class Connect {
     constructor() {
+        this.main = document.getElementById('main')
+        this.gameProg = document.getElementById('gameProgress')
         this.currPlayer = document.getElementById('currentPlayer');
         this.player = document.getElementById('player');
         this.headsWins = document.getElementById('headsWins');
@@ -33,6 +35,7 @@ class Connect {
             '', '', '', '', '', '', '',
             '', '', '', '', '', '', ''
         ]
+
         // array courtesy of Fakorede Damilola
         this.winningArray = [
             [0, 1, 2, 3], [41, 40, 39, 38], [7, 8, 9, 10],
@@ -62,99 +65,75 @@ class Connect {
 
         this.dx = 100
         this.dy = 100
-    }
 
+
+        this.clearBoardBtn = document.getElementById('boardClear')
+    }
+    
     init() {
-        this.canvas();
-        // this.createBoard();
         this.connectBoard();
-        this.drawBoard(700, 600, "gameBoard");
         this.handleSpaceClicked();
+        this.currPlayerTurn();
+        this.clearBoardBtn.addEventListener('click', ()=> {
+            this.clearBoard()
+        })
+        // console.log(this.clearBoard)
+        // this.canvas();
+        // this.drawBoard(700, 600, "gameBoard");
     }
 
+    currPlayerTurn() {
+        const message = `It's ${this.currPlayer}'s turn`;
+        return this.gameProg.innerText = message;
+    };
 
-    canvas() {
-        const gameBoard = this.gameBoard;
-        const gameBoardCtx = this.gameBoardCtx;
+    drawMessage() {
+        const message = `Game ended in a draw`;
+        return this.gameProg.innerText = message;
+    };
 
-        gameBoardCtx.fillStyle = this.boardBg;
-        gameBoardCtx.strokeStyle = this.boardBorder;
-        gameBoardCtx.fillRect(0, 0, gameBoard.width, gameBoard.height);
-        gameBoardCtx.strokeRect(0, 0, gameBoard.width, gameBoard.height);
+    winngingMessage() {
+        const message = `Player ${this.currPlayer} has won!`;
+        return this.gameProg.innerText = message;
+    };
 
 
-    }
 
-    drawBoard(w, h, gameBoard) {
-        // gameBoard = document.getElementById("gameBoard");
-        this.gameBoardCtx //= gameBoard.getContext('2d');
-        this.gameBoardCtx.canvas.width = w;
-        this.gameBoardCtx.canvas.height = h;
+    // canvas() {
+    //     const gameBoard = this.gameBoard;
+    //     const gameBoardCtx = this.gameBoardCtx;
 
-        // this.gameBoard.style.backgroundColor = "darkred";
-        // this.gameBoard.style.cursor = 'pointer';
+    //     gameBoardCtx.fillStyle = this.boardBg;
+    //     gameBoardCtx.strokeStyle = this.boardBorder;
+    //     gameBoardCtx.fillRect(0, 0, gameBoard.width, gameBoard.height);
+    //     gameBoardCtx.strokeRect(0, 0, gameBoard.width, gameBoard.height);
 
-        for (this.dx = 0; this.dx <= w; this.dx += 100) {
-            for (this.dy = 0; this.dy <= h; this.dy += 100) {
-                this.gameBoardCtx.moveTo(this.dx, 0);
-                this.gameBoardCtx.lineTo(this.dx, h);
-                this.gameBoardCtx.stroke();
-                this.gameBoardCtx.moveTo(0, this.dy);
-                this.gameBoardCtx.lineTo(w, this.dy);
-                this.gameBoardCtx.stroke();
-            }
-        };
 
-        // this.gameBoardCtx.fillStyle = "darkred";
-        // this.gameBoardCtx.strokeStyle = "whitesmoke";
+    // }
 
-        // this.gameBoardSection.innerHTML=`
-        // <canvas id="gameBoard" width="700" height="600"></canvas>
-        // `
+    // drawBoard(w, h, gameBoard) {
+    //     // gameBoard = document.getElementById("gameBoard");
+    //     this.gameBoardCtx //= gameBoard.getContext('2d');
+    //     this.gameBoardCtx.canvas.width = w;
+    //     this.gameBoardCtx.canvas.height = h;
 
-        // gameGrid.fillRect(0, 0, 20, 600);
-        // gameGrid.strokeRect(0, 0, 20, 600);
-        // gameGrid.fillRect(0, 0, 700, 600);
-        // gameGrid.strokeRect(0, 0, 700, 600);
 
-        // gameGrid.fillRect(100, 0, 20, 600);
-        // gameGrid.strokeRect(100, 0, 20, 600);
-        // gameGrid.fillRect(0, 100, 700, 20);
-        // gameGrid.strokeRect(0, 100, 700, 20);
+    //     for (this.dx = 0; this.dx <= w; this.dx += 100) {
+    //         for (this.dy = 0; this.dy <= h; this.dy += 100) {
+        //             this.gameBoardCtx.moveTo(this.dx, 0);
+        //             this.gameBoardCtx.lineTo(this.dx, h);
+        //             this.gameBoardCtx.stroke();
+        //             this.gameBoardCtx.moveTo(0, this.dy);
+    //             this.gameBoardCtx.lineTo(w, this.dy);
+    //             this.gameBoardCtx.stroke();
+    //         }
+    //     };
 
-        // gameGrid.fillRect(200, 0, 20, 600);
-        // gameGrid.strokeRect(200, 0, 20, 600);
-        // gameGrid.fillRect(0, 200, 700, 20);
-        // gameGrid.strokeRect(0, 200, 700, 20);
-
-        // gameGrid.fillRect(300, 0, 20, 600);
-        // gameGrid.strokeRect(300, 0, 20, 600);
-        // gameGrid.fillRect(0, 300, 700, 20);
-        // gameGrid.strokeRect(0, 300, 700, 20);
-
-        // gameGrid.fillRect(400, 0, 20, 600);
-        // gameGrid.strokeRect(400, 0, 20, 600);
-        // gameGrid.fillRect(0, 400, 700, 20);
-        // gameGrid.strokeRect(0, 400, 700, 20);
-
-        // gameGrid.fillRect(500, 0, 20, 600);
-        // gameGrid.strokeRect(500, 0, 20, 600);
-        // gameGrid.fillRect(0, 500, 700, 20);
-        // gameGrid.strokeRect(0, 500, 700, 20);
-
-        // gameGrid.fillRect(600, 0, 20, 600);
-        // gameGrid.strokeRect(600, 0, 20, 600);
-        // gameGrid.fillRect(0, 600, 700, 20);
-        // gameGrid.strokeRect(0, 600, 700, 20);
-
-        // gameGrid.fillRect(700, 0, 20, 620);
-        // gameGrid.strokeRect(700, 0, 20, 620);
-    }
+    // }
 
     connectBoard() {
         var divSpace = document.createElement('div');
         this.gameBoardSection.appendChild(divSpace);
-        // console.log(divSpace);
         divSpace = `
         <div data-cell-index='0' class='connect-space'></div>
         <div data-cell-index='1' class='connect-space'></div>
@@ -200,7 +179,6 @@ class Connect {
         <div data-cell-index='41' class='connect-space'></div>
         `
         this.gameBoardSection.innerHTML = divSpace
-        // console.log(this.gameBoardSection);
 
         this.gameBoardSection.style.backgroundColor = 'darkred';
     }
@@ -216,10 +194,7 @@ class Connect {
                 
 
                 this.handleSpacePlayed(space, spaceIdx);
-                // console.log(this.handleSpacePlayed);
                 this.resultValidation();
-                // console.log(this.resultValidation);
-                console.log(this.gameState);
             })
         })
     }
@@ -229,20 +204,18 @@ class Connect {
         this.currPlayer == 'H' ? space.classList.add('heads') : space.classList.add('tails');
         space.innerText = this.currPlayer;
     }
-
+    
     resultValidation() {
         let gameWon = false;
 
-        // let clickedCells = document.querySelectorAll('.clicked')
         for (let i = 0; i <= 40; i++) {
             const win = this.winningArray[i];
-            // console.log(win)
-            // console.log(clickedCells);
+
             let a = this.gameState[win[0]]
             let b = this.gameState[win[1]]
             let c = this.gameState[win[2]]
             let d = this.gameState[win[3]]
-
+            
             if (a == '' || b == '' || c == '' || d == '') {
                 continue;
             }
@@ -255,38 +228,60 @@ class Connect {
         }
 
         if (gameWon) {
+            const tallymark = '√'
+            this.winngingMessage();
             const winner = this.currPlayer;
             if (winner == 'H') {
                 this.winCount.h = this.winCount.h = 1;
+                this.headsWins.innerHTML += `<span class='tally'> ${tallymark} </span>`
             } else {
                 this.winCount.t = this.winCount.t = 1;
+                this.tailsWins.innerHTML += `<span class='tally'> ${tallymark} </span>`
             }
-
+            
             this.gameActive = false;
             return;
         }
 
-        this.playerChange()
+        const roundDraw = !this.gameState.includes('');
+        if(roundDraw) {
+            this.drawMessage();
+            this.gameActive = false;
+            return
+        }
 
+        
+        this.playerChange()
+        
     }
 
     playerChange() {
         this.currPlayer = this.currPlayer === 'H' ? 'T' : 'H';
+        this.currPlayerTurn()
     }
 
-    // createBoard(){
-    //     // createBoard function courtesy of Fakorede Damilola
-    //     for(let i=0;i<49;i++){ 
-    //         let div =document.createElement("div") 
-    //         div.setAttribute("data-id",i) 
-    //         div.className = "square" 
-    //         if (i>=42){ 
-    //         div.className="taken" 
-    //         } 
-    //         gameBoard.appendChild(div) 
-    //         }
+    clearBoard() {
+        this.gameActive = true;
+        this.currPlayer = 'H';
+        this.gameState = [
+            '','','','','','','',
+            '','','','','','','',
+            '','','','','','','',
+            '','','','','','','',
+            '','','','','','','',
+            '','','','','','',''
+        ];
+        this.connectBoard();
+        this.handleSpaceClicked();
+        this.currPlayerTurn();
+        document.querySelectorAll('.space').forEach(space => {
+            space.innerText = ''
+            // space.classList.remove('tails')
+        });
+        // console.log(this.gameState)
 
-    // }
+    }
+    
 }
 
 const connectFour = new Connect();
@@ -295,3 +290,5 @@ const startBtn = document.getElementById('startBtn');
 startBtn.addEventListener('click', () => {
     connectFour.init();
 })
+
+//make each column its own array?

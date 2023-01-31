@@ -6,9 +6,10 @@ body{
     background: #007ba7;
 }
 
-h1{
-    margin: 0;
-    padding: 0;
+h1, #gameProgress{
+    display: flex;
+    margin: 0 auto;
+    padding: 0 auto;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 60px;
     position: absolute;
@@ -17,6 +18,14 @@ h1{
     color: lightyellow;
 }
 
+.main {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 50px 0;
+    text-align: center;
+}
+
+
 header{
     background-color: #344611;
     height: 20vh;
@@ -24,11 +33,18 @@ header{
     border-bottom: 8px solid #841010;
 }
 
-.start-button{
+#gameProgress{
+    margin: 10px auto;
+    padding: 10px auto;
+    top: 160px;
+    left: 600px;
+}
+
+.start-button, #boardClear{
     cursor: pointer;
     position: relative;
     /* top: 60px; */
-    left: 200px;
+    left: 240px;
     width: 144px;
     height: 72px;
     text-transform: capitalize;
@@ -39,9 +55,16 @@ header{
     border-radius: 5%;
 }
 
-.start-button:hover{
+.start-button:hover, #boardClear:hover{
     background-color: #67330F;
     border: 2px solid #841010;
+}
+
+#boardClear{
+    display: flex;
+    position: relative;
+    left: 640px;
+    bottom: 80px;
 }
 
 #gameBoard{
@@ -79,20 +102,32 @@ header{
 
 .heads, .orange{
     background-color: orange;
+    text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 60px;
+}
+.heads{
+    border: 6px solid orangered;
 }
 
 .tails, .pink{
     background-color: pink;
+    text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 60px;
 }
+.tails{
+    border: 6px solid hotpink;
+}
 
-/* .cell{
-    width: 100px;
-    height: 100px;
-    box-shadow: 0 0 0 1px #333;
-    cursor: pointer;
-    line-height: 100px;
-} */
+.orange, .pink {
+    margin: 10px;
+    padding: 10px;
+    width: 240px;
+}
+
+.tally{
+    font-size: 60px;
+    font-weight: 900;
+    color: black;
+}

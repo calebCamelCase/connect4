@@ -12,12 +12,13 @@
         <h1>Welcome to Connect 4</h1>
     </header>
     <main class="main" id="main">
-
-        <section class="p1-section orange">
-            <h2 class="wins" id="playerOne"></h2>
+        
+        <section class="p1-section">
+            <h2 class="wins orange" id="playerOne">Heads</h2>
             <div class="win-count" id="headsWins"></div>
         </section>
-
+        <h2 id="gameProgress"></h2>
+        
         <section class="section" id="gameSection">
             <h2 class="current-player" id="currentPlayer"><span class="player" id="player"></span></h2>
             <button class="start-button" id="startBtn">play now</button>
@@ -26,12 +27,13 @@
             </canvas>
         </section>
 
-        <section class="p2-section pink">
-            <h2 class="wins" id="playerTwo"></h2>
+        <section class="p2-section">
+            <h2 class="wins pink" id="playerTwo">Tails</h2>
             <div class="win-count" id="tailsWins"></div>
         </section>
-
+        
     </main>
+    <button class="board-clear" id="boardClear"  onclick="this.clearBoard">clear board</button>
     
     <script src="js/app.js"></script>
 </body>
